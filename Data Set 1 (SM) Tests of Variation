@@ -62,3 +62,14 @@ CALCULATING TAJIMA'S PI (POPOOLATION1)
 - Realized after running this script that the maximum coverage of 400 that had been set would not be high enough for the ancestor which had been sequenced at a much higher coverage (approx. 600x)
 - So made another script to calculate Tajima's pi for the ancestor where the maximum coverage was changed to 800, it is titled "TAJIMAS_PI_ANCESTOR_SM.sh"
 
+(d) Move .pi files to local machine
+
+	scp cristina@info.mcmaster.ca:/4/cristina/sequence_analysis_sarah/tajimas_pi_SM/*.pi .
+
+VISUALIZING TAJIMA's PI (R-STUDIO)
+
+- At first I had tried to create outputs in .pdf from PoPoolation, but that didn't work so I asked Paul for help visualizing Tajima's pi using R scripts
+- Paul's scripts can be found on his Github page (Paul Knoops/episodicSequenceData), I used the same ones with modifications in the colours, axis etc.
+- One thing to remember for R is to set working directory in the directory where your data is
+So for example, for my .pi data, my working directory is cristin/Desktop/tajimas_pi_SM
+- The complete R script for these plots is provided under "R script: Tajima's pi plots"
