@@ -26,3 +26,120 @@ VISUALIZING TAJIMA'S D (R-STUDIO)
 - In addition, Paul helped me to add a component to the script to output a value for the percentage of data points located above 0 and the percentage of data points located below 0 
 - This is helpful for observing if the values shift over the generational time points, and is relevant for the interpretation of Tajima's D
 - The full scipt is listed under "R script: Tajima's D plots"
+- Some stats obtained from the Tajima's D plots:
+
+	D_PlotFunction('ANCESTOR_ALL_aligned_merged.sorted.final.D', "D Plot 10kb")
+	[1] "Proportion of values above 0 is 0.285505753048257"
+	[1] "Proportion of values below 0 is 0.714494246951743"
+	Minimum: -2.787535 (on chromosome 3L)
+	Maximum: 2.0268678 (on the X chromosome)
+	Mean D value: -0.3802477
+
+	D_PlotFunction('LAADR1G24_GAGATTCC-AGGCGAAG_aligned_merged.sorted.final.D', "D Plot 10kb”)
+	[1] "Proportion of values above 0 is 0.842864502833591"
+	[1] "Proportion of values below 0 is 0.157135497166409"
+	Minimum: -2.387261 (on the X chromosome)
+	Maximum: 2.687666 (on chromosome 3L)
+	Mean D value: 0.6101518
+
+	D_PlotFunction('LAADR1G10_GAGATTCC-TAATCTTA_aligned_merged.sorted.final.D', "D Plot 10kb”)
+	[1] "Proportion of values above 0 is 0.772056299347751"
+	[1] "Proportion of values below 0 is 0.227943700652249"
+	Minimum: -1.890705 (on the X chromosome)
+	Maximum: 1.965697 (on the X chromosome)
+	Mean D value: 0.2957823
+
+	D_PlotFunction('LAADR2G24_GAGATTCC-CAGGACGT_aligned_merged.sorted.final.D', "D Plot 10kb”)
+	[1] "Proportion of values above 0 is 0.856249464576373"
+	[1] "Proportion of values below 0 is 0.143750535423627"
+	Minimum: -2.089333 (on the X chromosome)
+	Maximum: 0.6525548 (on the X chromosome)
+	Mean D value: 0.6525548
+
+	D_PlotFunction('LAADR2G10_GAGATTCC-GTACTGAC_aligned_merged.sorted.final.D', "D Plot 10kb”)
+	[1] "Proportion of values above 0 is 0.764136394790953"
+	[1] "Proportion of values below 0 is 0.235863605209047"
+	Minimum: -2.010989 (on chromsome 2L)
+	Maximum: 2.203568 (on chromosome X)
+	Mean D value: 0.3065229
+
+	D_PlotFunction('LAADR3G24_ATTCAGAA-TATAGCCT_aligned_merged.sorted.final.D', "D Plot 10kb”)
+	[1] "Proportion of values above 0 is 0.847210300429185"
+	[1] "Proportion of values below 0 is 0.152789699570815"
+	Minimum: -2.102362 (on chromosome 3R)
+	Maximum: 2.437281 (on chromosome 2R)
+	Mean D value: 0.5634184
+
+	D_PlotFunction('LAADR3G10_ATTCAGAA-ATAGAGGC_aligned_merged.sorted.final.D', "D Plot 10kb”)
+	[1] "Proportion of values above 0 is 0.740233036326251"
+	[1] "Proportion of values below 0 is 0.259766963673749"
+	Minimum: -2.092513 (on chromosome 2L)
+	Maximum: 2.138966 (on chromosome 4)
+	Mean D value: 0.271117
+	
+- And despite not being to graph the 1kb data all that well, I still managed to get some stats from the the files using R:
+
+	D_PlotFunction('ANCESTOR_ALL_aligned_merged.sorted.final.1kb.D', "D Plot 1kb")
+	[1] "Proportion of values above 0 is 0.346116877276214"
+	[1] "Proportion of values below 0 is 0.653883122723785"
+	Mean D value: -0.4050982
+ 
+	D_PlotFunction('LAADR1G24_GAGATTCC-AGGCGAAG_aligned_merged.sorted.final.1kb.D', "D Plot 1kb")
+	[1] "Proportion of values above 0 is 0.7315621960923"
+	[1] "Proportion of values below 0 is 0.2684378039077"
+
+	D_PlotFunction('LAADR1G10_GAGATTCC-TAATCTTA_aligned_merged.sorted.final.1kb.D', "D Plot 1kb")
+	[1] "Proportion of values above 0 is 0.638139315971133"
+	[1] "Proportion of values below 0 is 0.361860684028867"
+
+	D_PlotFunction('LAADR2G24_GAGATTCC-CAGGACGT_aligned_merged.sorted.final.1kb.D', "D Plot 1kb")
+	[1] "Proportion of values above 0 is 0.734061499320086"
+	[1] "Proportion of values below 0 is 0.265938500679914"
+
+	D_PlotFunction('LAADR2G10_GAGATTCC-GTACTGAC_aligned_merged.sorted.final.1kb.D', "D Plot 1kb")
+	[1] "Proportion of values above 0 is 0.632615256168303"
+	[1] "Proportion of values below 0 is 0.367384743831697"
+
+	D_PlotFunction('LAADR3G24_ATTCAGAA-TATAGCCT_aligned_merged.sorted.final.1kb.D', "D Plot 1kb")
+	[1] "Proportion of values above 0 is 0.718893322225633"
+	[1] "Proportion of values below 0 is 0.281106677774368"
+
+	D_PlotFunction('LAADR3G10_ATTCAGAA-ATAGAGGC_aligned_merged.sorted.final.1kb.D', "D Plot 1kb")
+	[1] "Proportion of values above 0 is 0.616993361832273"
+	[1] "Proportion of values below 0 is 0.383006638167727"
+	
+SUBSAMPLING (POPOOLATION2)
+
+- Run subsample script from PoPoolation2 to reduce to a uniform coverage for all populations populations 
+- Should do this before running the other PoPoolation2 measures 
+- Example when you call perl for help:
+
+	perl subsample-synchronized.pl --input input.sync --output output.sync --target-coverage 50 --max-coverage 2%  --method
+       withoutreplacement
+
+- Options:
+
+	--input = The input file in the synchronized format; Mandatory.
+    --output = The output file, will be a synchronized file  Mandatory.
+    --target-coverage = Reduce the coverage of the pileup-file to the here provided value; The target 	coverage also acts as minimum coverage, i.e.: if the coverage in any population is smaller than the targetcoverage the whole pileup entry is discarded. Mandatory
+    --max-coverage = The maximum coverage; All populations are required to have coverages lower or equal than the maximum coverage; Mandatory The maximum coverage may be provided as one of the following:
+              '500' a maximum coverage of 500 will be used for all populations
+              '300,400,500' a maximum coverage of 300 will be used for the first population, a maximum coverage of 400 for the second population and so on
+            '2%' the 2% highest coverages will be ignored, this value is independently estimated for every population
+	--method = Specify the method for subsampling of the synchronized file. Either: withreplace, withoutreplace, fraction; Mandatory
+            withreplace: subsample with replacement
+            withoutreplace: subsample without replacement
+            fraction: calculate the exact fraction of the allele frequencies and linearly scale them to the C<--target-coverage> and rounding to an integer;
+			
+- Paul used the following values for his data:
+
+	40 for target coverage
+	200 for maximum coverage
+	‘with replacement’ for methods
+	
+- But Sarah's dataset is larger and sequenced at a higher coverage (140x for LAAD and 600 for ANCESTOR), so I am thinking of using:
+
+	80 for target coverage?
+	800 for maximum coverage?  Actually using the help function Paul and I learned that you 	can differentiate the maximum coverages for the different populations 
+	
+- The script for subsampling is titled "SUBSAMPLE_SM.sh"
