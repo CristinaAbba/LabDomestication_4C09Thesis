@@ -1,0 +1,11 @@
+CALCULATING TAJIMA'S D (POPOOLATION1)
+
+- Tajima's D = Test of neutrality based on the summary of the site frequency spectrum (Tajima's D statistic) using PoPoolation1
+- Calculate the difference between the number of pairwise differences (pi) and the number of segregating sites, scaled to indicate if a population is evolving by random or non-random processes (selection)
+- Tajima's D incorporates both measures that have been already calculated (Tajima's pi and Watterson's theta) and it compares the value of Watterson's theta to the pairwise differences (pi) in order to determine if the population is evolving in a random ('neutral') or non-random (under selection) manner.  In this way, whether or not selection, and what type of selection, is acting on a population can be inferred.  The idea is to evaluate whether the average number of differences between individuals is greater or less than what is expected by neutral theory (equilibrium between mutation and drift)
+- If Tajima's D is equal to 0, then the two estimates of variation are the same and the population can be described as evolving neutrally, there is a mutation-drift equilibrium  
+- If Tajima's D is less than 0, the negative value can be attributed to directional selection because pi is less than theta (lower average nucleotide diversity than number of segregating sites) and rare alleles are present at higher frequencies.  
+- This may be caused by a recent hard selective sweep, population expansion or severe bottleneck  
+- Lastly, if Tajima's D is above 0 then this may be an indication of balancing selection because pi is greater than theta (more average nucleotide diversity than number of segregating sites) and rare alleles are present at low frequencies 
+
+(a)
