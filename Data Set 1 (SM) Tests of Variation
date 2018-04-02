@@ -59,4 +59,6 @@ CALCULATING TAJIMA'S PI (POPOOLATION1)
 	min-covered-fraction [0.5] = Minimum percentage of sites having sufficient coverage in 	the given window (0.5 was what was 	  used in the example)
 	
 - The script used to calculate Tajima's pi is "TAJIMAS_PI_SM.sh"
+- Realized after running this script that the maximum coverage of 400 that had been set would not be high enough for the ancestor which had been sequenced at a much higher coverage (approx. 600x)
+- So made another script to calculate Tajima's pi for the ancestor where the maximum coverage was changed to 800, it is titled "TAJIMAS_PI_ANCESTOR_SM.sh"
 
