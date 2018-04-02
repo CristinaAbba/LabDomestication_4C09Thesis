@@ -178,4 +178,22 @@ VISUALIZING FST (R-STUDIO)
 - There are two aspects to the script that Paul wrote:
 
 	1. "R script: Separate Fst comparisons" = The first part is for splitting up the large .fst file into seperate .csv files for each comparisn that are easier to work with
-	2. "R script: Fst plots" = The second part is for creating the actual plots themselves.  Using the meanFst and combining the replicates at the different generational time points.  So the script here is from the meanFst Manhattan plot generated for ANCESTOR vs all three replicates at generaiton 10, but can be mainipulated for any comapriosn you like
+	2. "R script: Fst plots" = The second part is for creating the actual plots themselves.  Using the meanFst and combining the replicates at the different generational time points.  So the script here is from the meanFst Manhattan plot generated for ANCESTOR vs all three replicates at generaiton 10, but can be mainipulated for any comapriosn you like 
+	Note that for this you need to know the order that the bam files for your populations are stored in
+	The lsit above was taken from the directory in /4/sequence_analysis_sarah/gatk_dir_SM, so for instance if I want to compare the ancestor population to the R3 replicate population of lab adapted and domesticated at generation 10, I know my comaprison will be 1:7
+	
+- Once again obtained some stats measures from the plots comparing the ancestors to all three replicates at the different generational time points:
+
+	'Mean Fst ANCESTOR:R1,R2,R3 LAAD G10'
+	Mean = 0.0316239182144544
+	Median = 0.02884586
+	Maximum meanFst value = 0.3551421 (on the X chromosome)
+	Minimum meanFst value = 0.000 (on chromosomes X, 2L, 2R, 3L, 3R, and 4)
+
+	‘Mean Fst ANCESTOR:R1,R2,R3 LAAD G24
+	Mean = 0.0469393993771385
+	Median = 0.041041633333333
+	Maximum meanFst value = 0.3673966 (on the X chromosome)
+	Minimum meanFst value = 0.000 (on chromosome X, 2L, 2R, 3L, 3R and 4
+	
+- And that was all that time permitted for the analysis on Data Set 1
