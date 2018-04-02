@@ -63,6 +63,21 @@ VISUALIZING TAJIMA'S D (R-STUDIO)
     Maximum: 3.078739 (on chromosome 2R)
     Mean D value: 0.7390351
     
-    
+CREATE .MPILEUP
+
+- Even though I have pileup files, I am going to create a merged pileup of Paul’s final bam files so that I can create a sync file to use in the PoPoolation2 analysis
+- Flags (Same as before):
+
+	B = Disable BAQ (base alignment quality) computation (which stops probabilistic 	realignment for potential misaligned SNPs, but some also SNPs should not affect the results for the evolved pooled populations)
+	Q 0 = Quality score at 0 because we’ve done so many quality checks before (did 	quality of 20 in previous scripts)
+	f = Path to reference sequence
+	
+- The script itself is called "MPILEUP_PK.sh"
+
+CREATE SYNC FILE
+
+- The same final two steps as the pipeline for Data Set 1
+- Script can be found under "SYNC_PK.sh
+- Now we are ready to use the sync file for PoPoolation2 analysis
   
   
