@@ -128,4 +128,39 @@ VISUALIZING WATTERSON'S THETA (R-STUDIO)
 
 - Successfully was able to use the same scripts as before, but adjusted the working directory and input
 - The full R script can be found under "R-Script: Watterson's theta plots"
+- Using R I also generated some simple stats values from the graphs, just values such as mean, minimum and maximum
 
+	Theta_PlotFunction('ANCESTOR_ALL_aligned_merged.sorted.final.theta’, “Theta Plot")
+	Minimum: 0.000716 (on the X chromosome)
+	Maximum: 0.022916 (on the X chromosome)
+	Mean theta value: 0.005979
+
+	Theta_PlotFunction('LAADR1G24_GAGATTCC-AGGCGAAG_aligned_merged.sorted.final.theta’, “Theta Plot”)
+	Minimum: 0.000028 (on the X chromosome)
+	Maximum: 0.013553 (on chromosome 2L)
+	Mean pi value: 0.004662
+
+	Theta_PlotFunction('LAADR1G10_GAGATTCC-TAATCTTA_aligned_merged.sorted.final.theta’, “Theta Plot”)
+	Minimum: 0.000141 (on chromosome 3R)
+	Maximum: 0.015835 (on chromosome 2R)
+	Mean theta value: 0.004765
+
+	Theta_PlotFunction('LAADR2G24_GAGATTCC-CAGGACGT_aligned_merged.sorted.final.theta’, “Theta Plot”)
+	Minimum: 5.1002e-05 (on chromosome 3L)
+	Maximum:  (on chromosome 2L)
+	Mean theta value: 0.004003032
+
+	Theta_PlotFunction('LAADR2G10_GAGATTCC-GTACTGAC_aligned_merged.sorted.final.theta’, “Theta Plot”)
+	Minimum: 7.0676e-05 (on chromosome 3L)
+	Maximum: 0.01575745 (on chromosome 2L)
+	Mean theta value: 0.00492135
+
+	Theta_PlotFunction('LAADR3G24_ATTCAGAA-TATAGCCT_aligned_merged.sorted.final.theta’, “Theta Plot”)
+	Minimum: 0.000103864 (on chromosome 3R)
+	Maximum: 0.01731708 (on the X chromosome)
+	Mean theta value: 0.004157807
+
+	Theta_PlotFunction('LAADR3G10_ATTCAGAA-ATAGAGGC_aligned_merged.sorted.final.theta’, “Thet Plot”)
+	Minimum: 0.000190273 (on chromosome 4)
+	Maximum: 0.01899736 (on the X chromosome)
+	Mean theta value: 0.004923088
