@@ -1,5 +1,27 @@
 CALCULATING TAJIMA'S PI (POPOOLATION1)
 
+- PoPoolation1 = Estimating natural variaiton in pooled populations using next generation sequencing
+- What can you do with PoPoolation?
+
+	Genome wide overview of natural variation
+	Detailed inspection of candidate genes
+	Calcualte divergence between species
+	Calculate natural variation for genes (allows subsequent GO analysis)
+	
+- Quick reminder about positive selection - When an allele increases in its population frequency, nearby variants also increase in its frequency - known as hitchhiking 
+- This leads to a selective sweep which erases variation around a positively selected allele
+- After the sweep:
+
+	New mutations appear and restore diversity, but they appear very slowly (mutations are 	rare) and they are initially of 	low frequency
+	Positive selection thus creates a signature consisting of a region of low overall 	diversity with an excess of rare 		alleles - rare alleles are very important (SNP 	identification) - LOW TAJIMA’S D
+	Of course there are many more signatures of positive selection, like the proportion of 	functional change (McDonald 		Kreitman Test), length of the haplotypes (iHS and linkage 	disequilibrium) or differences in allele frequencies between 	 populations (Fst)
+	
+- PoPoolation currently calculates:
+
+	1. Tajima's pi
+	2. Watterson's theta
+	3. Tajima's D
+
 - Thus far I have been using mostly Sarah’s scripts as a guide because I have been working with her data, but for calculating Tajima’s pi I’ve looked to Paul’s scripts for guidelines because for his project he completed the analysis, so these are his steps:
 
 (a) Create necessary directories
@@ -19,4 +41,22 @@ CALCULATING TAJIMA'S PI (POPOOLATION1)
 	f = Path to reference sequence
 	
 - The script for this step is called "PILEUP_SM.sh"
+
+(c) Run script to calculate Tajima's pi
+
+- Flags - Paul went through the different flags with me and we discussed what it would mean to change certain options, but at this point the only flag that will be different is the pool size, Sarah’s pool sequencing was done with 100 individuals, which means 200 chromosomes
+
+	input = Input pileup file
+	output = File with Tajima’s Pi calculated
+	measure [pi] =Poptions include Tajima’s Pi or Watterson’s Theta or Tajima’s D 			along chromosomes using a sliding 	  window approach
+	window-size [10000] = Size of the sliding window
+	step-size [10000] = How far to move along with chromosome (if step size is 	smaller, 	the windows will overlap
+	min-coverage [4] = Minimum coverage (not important if subsampling was done)
+	max-coverage [400] = Maximum coverage
+	min-qual [20] = Minimum base quality (we already filtered for 20 in previous steps)
+	pool-size [200] = Number of chromosomes (double the number of individuals per pool)
+	fast-q type [sanger] = Depending on the encoding of the fastq files (we had indicated 	phred33 previously, so this will 	 remain consistent)
+	min-covered-fraction [0.5] = Minimum percentage of sites having sufficient coverage in 	the given window (0.5 was what was 	  used in the example)
+	
+- The script used to calculate Tajima's pi is "TAJIMAS_PI_SM.sh"
 
