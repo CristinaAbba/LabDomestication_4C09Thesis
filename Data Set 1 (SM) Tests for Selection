@@ -8,4 +8,7 @@ CALCULATING TAJIMA'S D (POPOOLATION1)
 - This may be caused by a recent hard selective sweep, population expansion or severe bottleneck  
 - Lastly, if Tajima's D is above 0 then this may be an indication of balancing selection because pi is greater than theta (more average nucleotide diversity than number of segregating sites) and rare alleles are present at low frequencies 
 
-(a)
+(a) Run script to calculate Tajima's D
+
+- This script is located under the title "TAJIMAS_D_SM.sh" 
+- The maximum coverage for this measure had also initially been set to 400x, so Tajima's D for this data set also has an additional script called "TAJIMAS_D_ANCESTOR_SM.sh" where the maximum coverage is increased to 800x to accommodate for the increased coverage for the ancestral populaiton (approx. 600x)
