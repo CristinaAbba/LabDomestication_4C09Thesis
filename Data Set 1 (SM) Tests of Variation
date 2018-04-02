@@ -14,7 +14,7 @@ CALCULATING TAJIMA'S PI (POPOOLATION1)
 
 	New mutations appear and restore diversity, but they appear very slowly (mutations are 	rare) and they are initially of low frequency
 	Positive selection thus creates a signature consisting of a region of low overall diversity with an excess of rare alleles - rare alleles are very important (SNP 	identification) - LOW TAJIMA’S D
-	Of course there are many more signatures of positive selection, like the proportion of 	functional change (McDonald 		Kreitman Test), length of the haplotypes (iHS and linkage 	disequilibrium) or differences in allele frequencies between 	 populations (Fst)
+	Of course there are many more signatures of positive selection, like the proportion of 	functional change (McDonald Kreitman Test), length of the haplotypes (iHS and linkage 	disequilibrium) or differences in allele frequencies between populations (Fst)
 	
 - PoPoolation currently calculates:
 
@@ -37,7 +37,7 @@ CALCULATING TAJIMA'S PI (POPOOLATION1)
 - Flags:
 
 	B = Disable BAQ (base alignment quality)
-	Q = Minimum base quality (already filtered for 20, default is 13, but since this step has already been completed in 	  	  the past Paul just set this to 0 because we don’t need to worry about it 
+	Q = Minimum base quality (already filtered for 20, default is 13, but since this step has already been completed in the past Paul just set this to 0 because we don’t need to worry about it 
 	f = Path to reference sequence
 	
 - The script for this step is called "PILEUP_SM.sh"
@@ -48,15 +48,15 @@ CALCULATING TAJIMA'S PI (POPOOLATION1)
 
 	input = Input pileup file
 	output = File with Tajima’s Pi calculated
-	measure [pi] =Poptions include Tajima’s Pi or Watterson’s Theta or Tajima’s D along chromosomes using a sliding window 		approach
+	measure [pi] =Poptions include Tajima’s Pi or Watterson’s Theta or Tajima’s D along chromosomes using a sliding window approach
 	window-size [10000] = Size of the sliding window
 	step-size [10000] = How far to move along with chromosome (if step size is 	smaller, the windows will overlap
 	min-coverage [4] = Minimum coverage (not important if subsampling was done)
 	max-coverage [400] = Maximum coverage
 	min-qual [20] = Minimum base quality (we already filtered for 20 in previous steps)
 	pool-size [200] = Number of chromosomes (double the number of individuals per pool)
-	fast-q type [sanger] = Depending on the encoding of the fastq files (we had indicated phred33 previously, so this will 	 	 remain consistent)
-	min-covered-fraction [0.5] = Minimum percentage of sites having sufficient coverage in the given window (0.5 was what was 	  used in the example)
+	fast-q type [sanger] = Depending on the encoding of the fastq files (we had indicated phred33 previously, so this will remain consistent)
+	min-covered-fraction [0.5] = Minimum percentage of sites having sufficient coverage in the given window (0.5 was what was used in the example)
 	
 - The script used to calculate Tajima's pi is "TAJIMAS_PI_SM.sh"
 - Realized after running this script that the maximum coverage of 400 that had been set would not be high enough for the ancestor which had been sequenced at a much higher coverage (approx. 600x)
@@ -111,4 +111,10 @@ So for example, for my .pi data, my working directory is cristin/Desktop/tajimas
 	Mean pi value: 0.005414635
 	
 CALCULATING WATTERSON'S THETA (POPOOLATION1)
+
+- Since I already created output directories for Tajima's pi, Watterson's theta and Tajima's D, I can just jump right into calculating theta with its own script
+
+(a) Run script to calculate Watterson's theta
+
+- Can be found under the file "W_THETA_SM.sh"
 
