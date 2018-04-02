@@ -246,10 +246,14 @@ gunzip dmel-all-chromosome-r5.57_2.fasta.gz
 - Need read groups for GATK to run
 - As far as Sarah can tell, the read groups can be anything, they just need to be there, can always edit them later
 
-	RGID --Read Group Identifier; for Illumina, are composed using the flowcell + lane name and number [using Lanes L001_L008 for now]
-	RGLB -- DNA Preperation Library Identifier [library1 as place holder]
-	RGPL - platform/technology used to produce the read [Illumina]
-	RGPU -- Platform Unit; details on the sequencing unit (i.e run barcode) [None, used for practice]
-	RGSM -- Sample [Using the basename which is each unique sequence]
+	RGID = Read Group Identifier; for Illumina, are composed using the flowcell + lane name and number [using Lanes L001_L008 for now]
+	RGLB = DNA Preperation Library Identifier [library1 as place holder]
+	RGPL = platform/technology used to produce the read [Illumina]
+	RGPU = Platform Unit; details on the sequencing unit (i.e run barcode) [None, used for practice]
+	RGSM = Sample [Using the basename which is each unique sequence]
 	
 - Script for defining read groups is "GATK_READGROUPS_SM.sh"
+
+(e) Index
+
+- Indexing script "GATK_INDEX_SM.sh"
