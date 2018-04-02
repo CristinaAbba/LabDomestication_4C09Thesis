@@ -265,4 +265,12 @@ gunzip dmel-all-chromosome-r5.57_2.fasta.gz
 
 (f) Run GATK realiner
 
-- Paul did this in one script, but I will follow the way Sarah did it since I am using her data and will split this step into two scripts; "GATK_INTERVAL_SM.sh" and "GATK_INDEL_SM.sh"
+- Paul did this in one script, but I will follow the way Sarah did it since I am using her data and will split this step into two scripts
+- The first is "GATK_INTERVAL_SM.sh", with the flags:
+
+	I = Input file
+	R = Reference genome
+	o = Output file
+	T = GATK tool I will be using
+
+- And the second "GATK_INDEL_SM.sh"
