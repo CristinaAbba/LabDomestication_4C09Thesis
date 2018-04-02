@@ -73,3 +73,41 @@ VISUALIZING TAJIMA's PI (R-STUDIO)
 - One thing to remember for R is to set working directory in the directory where your data is
 So for example, for my .pi data, my working directory is cristin/Desktop/tajimas_pi_SM
 - The complete R script for these plots is provided under "R script: Tajima's pi plots"
+- Using R I also generated some simple stats values from the graphs, just values such as mean, minimum and maximum
+
+	Pi_PlotFunction('ANCESTOR_ALL_aligned_merged.sorted.final.pi’, “Pi Plot")
+	Minimum: 0.000175 (on the X chromosome)
+	Maximum: 0.018779 (on chromosome 3R)
+	Mean pi value: 0.005516
+
+	Pi_PlotFunction('LAADR1G24_GAGATTCC-AGGCGAAG_aligned_merged.sorted.final.pi’, “Pi Plot”)
+	Minimum: 0.000008 (on the X chromosome)
+	Maximum: 0,017231 (on chromosome 3R)
+	Mean pi value: 0.004662
+
+	Pi_PlotFunction('LAADR1G10_GAGATTCC-TAATCTTA_aligned_merged.sorted.final.pi’, “Pi Plot”)
+	Minimum: 0.000111 (on chromosome 3L)
+	Maximum: 0.019238 (on chromosome 2R)
+	Mean pi value: 0.005271
+
+	Pi_PlotFunction('LAADR2G24_GAGATTCC-CAGGACGT_aligned_merged.sorted.final.pi’, “Pi Plot”)
+	Minimum: 2.0532e-05 (on chromosome 3L)
+	Maximum: 0.01723578 (on chromosome 3R)
+	Mean pi value: 0.004814601
+
+	Pi_PlotFunction('LAADR2G10_GAGATTCC-GTACTGAC_aligned_merged.sorted.final.pi’, “Pi Plot”)
+	Minimum: 2.1624e-05 (on chromosome 3L)
+	Maximum: 0.01787004 (on chromosome 2R)
+	Mean pi value: 0.005450618
+
+	Pi_PlotFunction('LAADR3G24_ATTCAGAA-TATAGCCT_aligned_merged.sorted.final.pi’, “Pi Plot”)
+	Minimum: 8.2927e-05 (on chromosome 3R)
+	Maximum: 0.01767625 (on chromosome 2R)
+	Mean pi value: 0.00491107
+
+	Pi_PlotFunction('LAADR3G10_ATTCAGAA-ATAGAGGC_aligned_merged.sorted.final.pi’, “Pi Plot”)
+	Minimum:  0.01848513 (on chromosome 4)
+	Maximum: 0.005414635 (on chromosome 2R)
+	Mean pi value: 0.005414635
+	
+CALCULATING WATTERSON'S THETA (POPOOLATION1)
