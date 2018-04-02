@@ -1,4 +1,4 @@
-Step 1: Download the files for the raw data and check md5sum or word count
+STEP 1: Download the files for the raw data and check md5sum or word count
 
 - A note on naming conventions for Sarah's files:
   
@@ -12,7 +12,7 @@ Step 1: Download the files for the raw data and check md5sum or word count
 - md5sum is a good way to ensure that the matches sets (R1 and R1) are correct
 - I don't have the unique 'codes' for the reads, so if I want to check this after I will ask Dr. Dworkin for help
 
-Step 2: Quality control (QC) of sequences
+STEP 2: Quality control (QC) of sequences (fastqc)
 
 - To run quality checks, everything I will likely ever need can be found in the following directory on Dr. Golding's server
   
@@ -22,12 +22,12 @@ Step 2: Quality control (QC) of sequences
 - When calling a program you always have to tell terminal first where it can be found
 - Do not be afraid to use "man" to learn about something (manual), for example
   
-    man /usr/local/fastqc/fastqc
+  man /usr/local/fastqc/fastqc
     
 - Be sure to identify an output for quality check, this is why the directory "fastqc_checks_SM" was created
 - Test run on a single file:
   
-    /usr/local/fastqc/fastqc --outdir=/4/cristina/sequence_analysis_sarah/fastqc_checks_SM/LAAD_R3_G10_ATTCAGAA-    ATAGAGGC_L008_R2_001.fastq.gz
+  /usr/local/fastqc/fastqc --outdir=/4/cristina/sequence_analysis_sarah/fastqc_checks_SM/LAAD_R3_G10_ATTCAGAA-    ATAGAGGC_L008_R2_001.fastq.gz
     
 - Now when I go into my fastqc_checks_SM directory there are two files; a .zip file and an .html file
 - To run all of the checks at once on a screen being by entering the command"screen" into the terminal window
@@ -35,28 +35,28 @@ Step 2: Quality control (QC) of sequences
 - For example, if I opened a screen in info113, that is where I must go to return to it (it is like a virtual terminal screen, it works the same way and you can log off and close the computer and leave a script to run for when you return)
 - Now this screen can be used like a regular terminal window, but I can exit from terminal at any time and the things hat are running will continue to run
   
-    /usr/local/fastqc/fastqc --outdir=/4/cristina/sequence_analysis_sarah/fastqc_checks_SM/ *fastq.gz
+  /usr/local/fastqc/fastqc --outdir=/4/cristina/sequence_analysis_sarah/fastqc_checks_SM/ *fastq.gz
     
 - This will run for all the files that end in "fastq.gz"
 - Some common commands for screen:
   
-    screen -S <name> = Start a new screen session with name
-    screen -ls = List running screen sessions
-    screen -x = Attach to a running screen
-    screen -r <name> = Attach to session "name"
-    CONTROL -a -d = To detach
-    CONTROL -a -k = To kill screen
+  screen -S <name> = Start a new screen session with name
+  screen -ls = List running screen sessions
+  screen -x = Attach to a running screen
+  screen -r <name> = Attach to session "name"
+  CONTROL -a -d = To detach
+  CONTROL -a -k = To kill screen
     
 - Moving files to your local machine - It is easier to go from a current location on my laptopn and "reach in a grab" the files from the server, than the other way around
 - I created a directory on my desktop for the initial quality check outputs ("fastqc_output_SM")
   
-    /Desktop/fastqc_output_SM/
+  /Desktop/fastqc_output_SM/
     
-    scp cristina@info.mcmaster.ca:/4/cristina/sequence_analysis_sarah/fastqc_checks_SM/*.zip
+  scp cristina@info.mcmaster.ca:/4/cristina/sequence_analysis_sarah/fastqc_checks_SM/*.zip
     
 - This tells terminal to SECURE COPY all the files ending in .zip from the disclosed location to HERE, where I am right now - that is what is meant by the period (note this requires password)
 
-Step 3: Trimming
+STEP 3: Trimming (Trimmomatic)
 
 - Introduction to Trimmomatic - Trimmomatic is a fast, multithreaded command line tool that can be used to trim and crop Illumina (fast, multi threaded command line tool that can be used to trim and crop Illumina (FASTQ) data as well as to remove adapters.  These adapters can pose a real problem depending on the library preparation and downstream application
 - There are 2 major models:
@@ -98,3 +98,33 @@ Quality encoding detected as phred33
 - The output when I ran this went to my raw data directory, so I just moved it to the trimmed_data_SM directory for now
 - These reads will get trimmed again anyway when the script is written
 - The script for trimming the data is "TRIM_SM.sh"
+
+STEP 4: Mapping (BWA)
+
+- Introduction to BWA - Need to make a directory for “mapped_data_SM with sub-directories for “ref_genome”, “sam_files” and bam_files” in cristina if you want to carry out the script below as is
+- BWA is a software package for mapping low-divergent sequences against a large reference genome, such as the human genome
+- It consistes of three algorithms:
+
+  1. BWA-backtrack
+  2. BWA-SW
+  3. BWA-MEM (the one I am using)
+  
+- The first algorithm is designed for Illumina sequence reads up to 100bp, while the other two for longer sequences ranged from 70bp to 1Mbp
+- BWA-MEM and BWA-SW share similar features such as long read support and split alignment, but BWA-MEM, which is the latest, is generally recommended for high-quality queries as it is faster and more accurate
+- BWA-MEM also has better performance than BWA-backtrack for 70-100bp Illumina reads.
+- For all algorithms, BWA first needs to construct the FM-index for the reference genome (the index command)
+- Alignment algorithms are invoked with different sub commands:
+
+  aln/samse/sample = For BWA backtrack
+  bwasw = For BWA-SW
+  mem = For the BWA MEM algorithm
+  
+- Before writing the mapping script I need to download the reference genome - Can do this from flybase.net.  Find a fasta.gz that can be used as a reference
+- Will also have to index it afterwards with "bwa index"
+
+  curl -O ftp://ftp.flybase.net/genomes/Drosophila_melanogaster/dmel_r5.57_FB2014_03/fasta/dmel-all-chromosome-r5.57.fasta.gz
+bwa index dmel-all-chromosome-r5.57.fasta.gz
+
+- The scripts for mapping paired sequences and unpaired sequences are "MAP_SM.sh" and "MAP_unpaired_SM.sh" respectively
+
+  
