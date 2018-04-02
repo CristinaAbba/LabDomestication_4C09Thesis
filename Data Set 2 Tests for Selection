@@ -78,6 +78,13 @@ CREATE SYNC FILE
 
 - The same final two steps as the pipeline for Data Set 1
 - Script can be found under "SYNC_PK.sh
+- Flags:
+
+	ea: enable assertions
+	Xmx12g: Which allocates Java 12 Gb of memory (Sarah used 32, but I again am going to 	try with less since Paul does not have as much data)
+
 - Now we are ready to use the sync file for PoPoolation2 analysis
-  
-  
+
+SUBSAMPLING (POPOOLATION2)
+
+- Yes...I made this same mistake twice...but since I did, I'll still include the subsampling script for Paul's data because the script itself is correct, it just should have been done for Tajima's D...the script is called "SUBSAMPLE_PK.sh"
