@@ -1,3 +1,0 @@
-Data Set 2 was borrowed from Paul Knoops' Predation reseach (original sequenced data from Michael DeNieu at Michigan State University)
-
-- For Paul's sequence data, I am starting with the final .bam files (pipeline completed all the way up to GATK realiner), so all I have to do is create the necessary directories and .pileup files for his data, and then can jump right into the analysis
