@@ -111,5 +111,5 @@ CALCULATE FST (POPOOLATION2)
 	
 VISUALIZING FST (R-STUDIO)
 
-- Same two scripts to separate the files and generate plots as Sarah's date, but with the necesarry changes to the working directory etc ("R script: 
+- Same two scripts to separate the files and generate plots as Sarah's date, but with the necesarry changes to the working directory etc ("R script: Separate fst comparisons" and "R script: Fst plots")
 
