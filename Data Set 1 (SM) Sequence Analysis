@@ -257,3 +257,12 @@ gunzip dmel-all-chromosome-r5.57_2.fasta.gz
 (e) Index
 
 - Indexing script "GATK_INDEX_SM.sh"
+- Make sure to index reference!
+
+	samtools faidx dmel-all-chromosome-r5.57_2.fasta
+	
+- This will create an index of unzipped reference genome in your ref-genome directory
+
+(f) Run GATK realiner
+
+- Paul did this in one script, but I will follow the way Sarah did it since I am using her data and will split this step into two scripts; "GATK_INTERVAL_SM.sh" and "GATK_INDEL_SM.sh"
