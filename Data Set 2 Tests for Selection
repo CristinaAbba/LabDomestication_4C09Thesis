@@ -1,0 +1,68 @@
+CALCULATING TAJIMA'S D (POPOOLATION1)
+
+(a) Run script to calculate Tajima's D
+
+- Found in the file "TAJIMAS_D_PK.sh"
+
+(b) Transfer .D files to your local machine
+
+    scp cristina@info.mcmaster.ca:/4/cristina/sequence_analysis_paul/tajimas_d_PK/*.D .
+    
+VISUALIZING TAJIMA'S D (R-STUDIO)
+
+- Using the script "R script: Tajima's D plots"
+- This script includes the proportions above and below 0 as well
+- Some stats that were obtained:
+
+    D_PlotFunction('MGD3_SO_CAGATC_merged_aligned_pe.final.D', "D Plot")
+    [1] "Proportion of values above 0 is 0.630483592400691"
+    [1] "Proportion of values below 0 is 0.369516407599309"
+    Minimum: -2.056094 (on the X chromosome)
+    Maximum: 1.819284 (on the X chromosome)
+    Mean D value: 0.07888175
+
+    D_PlotFunction('F38ConR1_ATCACG_merged_aligned_pe.final.D', "D Plot")
+    [1] "Proportion of values above 0 is 0.806454381598146"
+    [1] "Proportion of values below 0 is 0.193545618401854"
+    Minimum: -2.066341 (on chromosome 3R)
+    Maximum: 2.464207 (on the X chromosome)
+    Mean D value: 0.4959546
+
+    D_PlotFunction('F38ConR2_TTAGGC_merged_aligned_pe.final.D', "D Plot")
+    [1] "Proportion of values above 0 is 0.805060034305317"
+    [1] "Proportion of values below 0 is 0.194939965694683"
+    Minimum: -1.735389 (on chromosome 4)
+    Maximum: 2.735389 (on the X chromosome)
+    Mean D value: 0.5119125
+
+    D_PlotFunction('F77ConR1_ATGTCA_merged_aligned_pe.final.D', "D Plot")
+    [1] "Proportion of values above 0 is 0.817382307294361"
+    [1] "Proportion of values below 0 is 0.182617692705639" 
+    Minimum: -2.399526 (on chromosome 3R)
+    Maximum: 4.06468 (on chromosome 2L)
+    Mean D value: 0.8616072
+ 
+    D_PlotFunction('F77ConR2_ATTCCT_merged_aligned_pe.final.D', "D Plot")
+    [1] "Proportion of values above 0 is 0.871779405428694"
+    [1] "Proportion of values below 0 is 0.128220594571305"
+    Minimum: -2.775454 (on the X chromosome)
+    Maximum: 3.84826 (on the X chromosome)
+    Mean D value: 0.9627712
+
+    D_PlotFunction('F115ConR1_TAGCTT_merged_aligned_pe.final.D', "D Plot")
+    [1] "Proportion of values above 0 is 0.787038626609442"
+    [1] "Proportion of values below 0 is 0.212961373390558"
+    Minimum: -2.645408 (on chromosome 2L)
+    Maximum: 3.078739 (on chromosome 3L)
+    Mean D value: 0.7390351
+
+    D_PlotFunction('F115ConR2_GGCTAC_merged_aligned_pe.final.D', "D Plot")
+    [1] "Proportion of values above 0 is 0.84405876793539"
+    [1] "Proportion of values below 0 is 0.15594123206461"
+    Minimum: -2.583878 (on chromosome 2R)
+    Maximum: 3.078739 (on chromosome 2R)
+    Mean D value: 0.7390351
+    
+    
+  
+  
