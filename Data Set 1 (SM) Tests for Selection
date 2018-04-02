@@ -12,3 +12,17 @@ CALCULATING TAJIMA'S D (POPOOLATION1)
 
 - This script is located under the title "TAJIMAS_D_SM.sh" 
 - The maximum coverage for this measure had also initially been set to 400x, so Tajima's D for this data set also has an additional script called "TAJIMAS_D_ANCESTOR_SM.sh" where the maximum coverage is increased to 800x to accommodate for the increased coverage for the ancestral populaiton (approx. 600x)
+- In addition to recognizing that the coverage needed to be changed, another change that was made was the tests for selection (Tajima's pi and Watterson's theta) as well as Tajima's D were run once more with 1,000bp (1kb) windows
+- Because Sarah's data set was so large the thought process here was that we could achieve more informative data points by using a smaller window
+- So the same scripts were run again, just with the smaller 1kb window size, but it turned out that the size of the files when transfered to my local computer were quite large and difficult to visualize using R, so the plots from the 1kb data will not appear in the final report unfortunately
+
+(b) Transfer .D files to local machine
+
+    scp cristina@info.mcmaster.ca:/4/cristina/sequence_analysis_sarah/tajimas_d_SM/*.D .
+    
+VISUALIZING TAJIMA'S D (R-STUDIO)
+
+- Tajima's D was visualized with the same scripts as the measures of variation, however the axis were adjusted to accommodate for the negative values
+- In addition, Paul helped me to add a component to the script to output a value for the percentage of data points located above 0 and the percentage of data points located below 0 
+- This is helpful for observing if the values shift over the generational time points, and is relevant for the interpretation of Tajima's D
+- The full scipt is listed under "R script: Tajima's D plots"
