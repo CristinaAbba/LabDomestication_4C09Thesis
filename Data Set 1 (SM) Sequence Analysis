@@ -2,12 +2,12 @@ STEP 1: Download the files for the raw data and check md5sum or word count
 
 - A note on naming conventions for Sarah's files:
   
-  LAAD = Description of the population (LAAD for Lab adapted and domesticated and ANCESTOR for ancestral population
-  R1 = Biological replicates from the same pool
-  GAGATTCC-AGGCGAAG = Tag/label
-  L001 = The lane it was run in
-  R1 = For either read 1 or read 2 (forwards and reverse)
-  gz = Simply indicates a compressed file
+    LAAD = Description of the population (LAAD for Lab adapted and domesticated and ANCESTOR for ancestral population
+    R1 = Biological replicates from the same pool
+    GAGATTCC-AGGCGAAG = Tag/label
+    L001 = The lane it was run in
+    R1 = For either read 1 or read 2 (forwards and reverse)
+    gz = Simply indicates a compressed file
   
 - md5sum is a good way to ensure that the matches sets (R1 and R1) are correct
 - I don't have the unique 'codes' for the reads, so if I want to check this after I will ask Dr. Dworkin for help
@@ -16,18 +16,18 @@ STEP 2: Quality control (QC) of sequences (fastqc)
 
 - To run quality checks, everything I will likely ever need can be found in the following directory on Dr. Golding's server
   
-  /usr/local/
+    /usr/local/
   
 - For resources try the command "ls" to see what is available
 - When calling a program you always have to tell terminal first where it can be found
 - Do not be afraid to use "man" to learn about something (manual), for example
   
-  man /usr/local/fastqc/fastqc
+    man /usr/local/fastqc/fastqc
     
 - Be sure to identify an output for quality check, this is why the directory "fastqc_checks_SM" was created
 - Test run on a single file:
   
-  /usr/local/fastqc/fastqc --outdir=/4/cristina/sequence_analysis_sarah/fastqc_checks_SM/LAAD_R3_G10_ATTCAGAA-    ATAGAGGC_L008_R2_001.fastq.gz
+    /usr/local/fastqc/fastqc --outdir=/4/cristina/sequence_analysis_sarah/fastqc_checks_SM/LAAD_R3_G10_ATTCAGAA-            ATAGAGGC_L008_R2_001.fastq.gz
     
 - Now when I go into my fastqc_checks_SM directory there are two files; a .zip file and an .html file
 - To run all of the checks at once on a screen being by entering the command"screen" into the terminal window
@@ -35,24 +35,24 @@ STEP 2: Quality control (QC) of sequences (fastqc)
 - For example, if I opened a screen in info113, that is where I must go to return to it (it is like a virtual terminal screen, it works the same way and you can log off and close the computer and leave a script to run for when you return)
 - Now this screen can be used like a regular terminal window, but I can exit from terminal at any time and the things hat are running will continue to run
   
-  /usr/local/fastqc/fastqc --outdir=/4/cristina/sequence_analysis_sarah/fastqc_checks_SM/ *fastq.gz
+    /usr/local/fastqc/fastqc --outdir=/4/cristina/sequence_analysis_sarah/fastqc_checks_SM/ *fastq.gz
     
 - This will run for all the files that end in "fastq.gz"
 - Some common commands for screen:
   
-  screen -S <name> = Start a new screen session with name
-  screen -ls = List running screen sessions
-  screen -x = Attach to a running screen
-  screen -r <name> = Attach to session "name"
-  CONTROL -a -d = To detach
-  CONTROL -a -k = To kill screen
+    screen -S <name> = Start a new screen session with name
+    screen -ls = List running screen sessions
+    screen -x = Attach to a running screen
+    screen -r <name> = Attach to session "name"
+    CONTROL -a -d = To detach
+    CONTROL -a -k = To kill screen
     
 - Moving files to your local machine - It is easier to go from a current location on my laptopn and "reach in a grab" the files from the server, than the other way around
 - I created a directory on my desktop for the initial quality check outputs ("fastqc_output_SM")
   
-  /Desktop/fastqc_output_SM/
+    /Desktop/fastqc_output_SM/
     
-  scp cristina@info.mcmaster.ca:/4/cristina/sequence_analysis_sarah/fastqc_checks_SM/*.zip
+    scp cristina@info.mcmaster.ca:/4/cristina/sequence_analysis_sarah/fastqc_checks_SM/*.zip
     
 - This tells terminal to SECURE COPY all the files ending in .zip from the disclosed location to HERE, where I am right now - that is what is meant by the period (note this requires password)
 
@@ -61,33 +61,33 @@ STEP 3: Trimming (Trimmomatic)
 - Introduction to Trimmomatic - Trimmomatic is a fast, multithreaded command line tool that can be used to trim and crop Illumina (fast, multi threaded command line tool that can be used to trim and crop Illumina (FASTQ) data as well as to remove adapters.  These adapters can pose a real problem depending on the library preparation and downstream application
 - There are 2 major models:
 
-  1. Paired end mode
-  2. Single end mode
+    1. Paired end mode
+    2. Single end mode
   
 - The paired end mode will maintain correspondence of read pairs and also use the additional information contained in paired reads to Bettie find adapter or PCR primer fragments introduced by the library preparation process
 - Trimmomatic works with FASTQ files (using phred +33 or shred +64 quality scores, depending on the Illumina pipeline).  Files compressed using either ‘gzip’ or ‘bzip’ are supported and are identified by use of ‘.gz’ or .bz2' 
 - Trimmomatic performs a variety of useful trimming tasks for illuminating paired end and single end data.  The selection of trimming steps and their associated parameters are supplied on the command line
 
-  ILLUMINACLIP = Cut adapter and other Illumina-specific sequences from the read
-  SLIDING WINDOW = Performs a sliding window trimming approach.  Starts scanning at the 5’ end and clips the read once the   avg. quality within the window falls below a threshold
-  MAX INFO = An adaptive quality trimmer which balances read length and error rate to maximize the value of each read
-  LEADING = Cut bases off at the start of the read, if below a threshold quality
-  TRAILING = Cut bases off at the end of the read, if below a threshold quality
-  CROP = Cut the read to a specified number of bases from the end
-  HEADCROP = Cut the specified number of bases from the start of the read
-  MINLEN = Drop the read if it is below a specified length
-  AVGQUAL = Drop th read if it is below a specified quality
-  TOPHRED33 = Convert quality score to Phred 33
-  TOPHRED64 = Convert quality screen to Phred 64
+    ILLUMINACLIP = Cut adapter and other Illumina-specific sequences from the read
+    SLIDING WINDOW = Performs a sliding window trimming approach.  Starts scanning at the 5’ end and clips the read once the       avg. quality within the window falls below a threshold
+    MAX INFO = An adaptive quality trimmer which balances read length and error rate to maximize the value of each read
+    LEADING = Cut bases off at the start of the read, if below a threshold quality
+    TRAILING = Cut bases off at the end of the read, if below a threshold quality
+    CROP = Cut the read to a specified number of bases from the end
+    HEADCROP = Cut the specified number of bases from the start of the read
+    MINLEN = Drop the read if it is below a specified length
+    AVGQUAL = Drop th read if it is below a specified quality
+    TOPHRED33 = Convert quality score to Phred 33
+    TOPHRED64 = Convert quality screen to Phred 64
   
 - For paired end mode, two input files and 4 output files are specified, 2 for the ‘paired’ output where both reads survived the processing and 2 for corresponding ‘unpaired’ output where a read survived but the read did not (For output 1P, 1U, 2P, 2U)
 - Example:
 
-  ava -jar trimmomatic-0.36.jar PE s_1_1_sequence.txt.gz s_1_2_sequence.txt.gz lane1_forward_paired.fq.gz lane1_forward_unpaired.fq.gz lane1_reverse_paired.fq.gz lane1_reverse_unpaired.fq.gz ILLUMINACLIP: TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4 MINLEN:36
+    ava -jar trimmomatic-0.36.jar PE s_1_1_sequence.txt.gz s_1_2_sequence.txt.gz lane1_forward_paired.fq.gz             lane1_forward_unpaired.fq.gz lane1_reverse_paired.fq.gz lane1_reverse_unpaired.fq.gz ILLUMINACLIP: TruSeq3-PE.fa:2:30:10  LEADING:3 TRAILING:3 SLIDINGWINDOW:4 MINLEN:36
   
 - Trim test from the command line:
 
-  java -jar /usr/local/trimmomatic/trimmomatic-0.36.jar PE LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R1_001.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R2_001.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R1_001_paired_test.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R1_001_unpaired_test.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R2_001_paired_test.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R2_001._unpaired_test.fastq.gz ILLUMINACLIP:/usr/local/trimmomatic/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 MAXINFO:40:0.5 MINLEN:36 
+    java -jar /usr/local/trimmomatic/trimmomatic-0.36.jar PE LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R1_001.fastq.gz  LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R2_001.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R1_001_paired_test.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R1_001_unpaired_test.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R2_001_paired_test.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R2_001._unpaired_test.fastq.gz ILLUMINACLIP:/usr/local/trimmomatic/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 MAXINFO:40:0.5 MINLEN:36 
        
 TrimmomaticPE: Started with arguments:                         LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R1_001.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R2_001.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R1_001_paired_test.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R1_001_unpaired_test.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R2_001_paired_test.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R2_001._unpaired_test.fastq.gz ILLUMINACLIP:/usr/local/trimmomatic/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 MAXINFO:40:0.5 MINLEN:36
 
@@ -105,9 +105,9 @@ STEP 4: Mapping (BWA)
 - BWA is a software package for mapping low-divergent sequences against a large reference genome, such as the human genome
 - It consistes of three algorithms:
 
-  1. BWA-backtrack
-  2. BWA-SW
-  3. BWA-MEM (the one I am using)
+    1. BWA-backtrack
+    2. BWA-SW
+    3. BWA-MEM (the one I am using)
   
 - The first algorithm is designed for Illumina sequence reads up to 100bp, while the other two for longer sequences ranged from 70bp to 1Mbp
 - BWA-MEM and BWA-SW share similar features such as long read support and split alignment, but BWA-MEM, which is the latest, is generally recommended for high-quality queries as it is faster and more accurate
@@ -115,15 +115,15 @@ STEP 4: Mapping (BWA)
 - For all algorithms, BWA first needs to construct the FM-index for the reference genome (the index command)
 - Alignment algorithms are invoked with different sub commands:
 
-  aln/samse/sample = For BWA backtrack
-  bwasw = For BWA-SW
-  mem = For the BWA MEM algorithm
+    aln/samse/sample = For BWA backtrack
+    bwasw = For BWA-SW
+    mem = For the BWA MEM algorithm
   
 - Before writing the mapping script I need to download the reference genome - Can do this from flybase.net.  Find a fasta.gz that can be used as a reference
 - Will also have to index it afterwards with "bwa index"
 
-  curl -O ftp://ftp.flybase.net/genomes/Drosophila_melanogaster/dmel_r5.57_FB2014_03/fasta/dmel-all-chromosome-r5.57.fasta.gz
-bwa index dmel-all-chromosome-r5.57.fasta.gz
+    curl -O ftp://ftp.flybase.net/genomes/Drosophila_melanogaster/dmel_r5.57_FB2014_03/fasta/dmel-all-chromosome-  r5.57.fasta.gz
+    bwa index dmel-all-chromosome-r5.57.fasta.gz
 
 - The scripts for mapping paired sequences and unpaired sequences are "MAP_SM.sh" and "MAP_unpaired_SM.sh" respectively
 
@@ -143,9 +143,9 @@ STEP 6: Merge files (samtools)
 - I also learned that samtools has an option to sort as well, but we will be using Picard because it does not accept samtools sorting (more on this later)
 - Merging took place in three steps:
 
-  1.  Merge lanes 1 to 4 using the script "MERGE_L001TOL004_SM.sh
-  2.  Merge lanes 5 to 8 using the script "MERGE_L005TOL008_SM.sh
-  3.  Merge all ancestor files using the script "MERGE_ANCESTOR.sh"
+    1.  Merge lanes 1 to 4 using the script "MERGE_L001TOL004_SM.sh
+    2.  Merge lanes 5 to 8 using the script "MERGE_L005TOL008_SM.sh
+    3.  Merge all ancestor files using the script "MERGE_ANCESTOR.sh"
   
 - After going through Sarah’s pipeline I realized that I probably needed to put this in the same directory as the other merged files, so I moved the merged output to merged_data_SM, and then moved the merged ancestors from the previous step (involving the lanes) into the directory merged_ancestor_SM incase I still need them
 
@@ -157,9 +157,9 @@ STEP 7: Sorting (Picard)
 - As per Sarah’s pipeline we will also be using SortSam from Picard Tools to sort the data and prepare for marking
 - Important flags:
 
-  Xmx2g = Which allocated Java 2 Gb of memory
-  S0 = Which is the sort order (in this case based on coordinate)
-  VALIDATION_STRINGENCY = Silenced to stop Picard from reporting every issue that would ultimately be displayed that would not help us at all when it comes to the final results for the analysis
+    Xmx2g = Which allocated Java 2 Gb of memory
+    S0 = Which is the sort order (in this case based on coordinate)
+    VALIDATION_STRINGENCY = Silenced to stop Picard from reporting every issue that would ultimately be displayed that would    not help us at all when it comes to the final results for the analysis
   
 - Also had to make a new directory for sorted output
 - The script for sorting using picard is called "SORTSAM_PICARD_SM.sh"
@@ -170,16 +170,17 @@ STEP 8: Remove Duplicates (Picard)
 - This step removes the duplicates from our sequence data
 - Duplicates can come from two sources;
 
-	1. During sequencing isolated clusters are identified as two when they are a single 	cluster (OPTICAL DUPLICATES)
-	2. Duplicates may occur during the PCR stage
+	  1. During sequencing isolated clusters are identified as two when they are a single 	cluster (OPTICAL DUPLICATES)
+	  2. Duplicates may occur during the PCR stage
   
 - Duplicates are removed with Picard Tools, using the files generated by sorting with PICARD
 - IMPORTANT: Sarah had problems with memory when doing this, so make sure to set the computer memory used to 12
 - So that makes the flags:
-	Xmx12g = Which allocates Java 12 Gb of memory
-	M = Creates an output file of statistics of duplicates found (but is rewritten e	very loop in the script)
-	VALIDATION_STRINGENCY=SILENT
-	REMOVE_DUPLICATES=true = Gets rid of any found duplicated regions
+
+	  Xmx12g = Which allocates Java 12 Gb of memory
+	  M = Creates an output file of statistics of duplicates found (but is rewritten e	very loop in the script)
+	  VALIDATION_STRINGENCY=SILENT
+	  REMOVE_DUPLICATES=true = Gets rid of any found duplicated regions
   
 - The script for removing duplicates is called "RM_DUPLICATES_SM.sh"
 
@@ -190,8 +191,52 @@ STEP 9: Remove low quality reads (samtools)
 - One thing that I DO understand is to call the outputs final.bam since this is the final bam step before creating mpileup files, so I will keep the same naming conventions
 - The flags used are:
 
-  -q 20 = Minimum quality score
-  F 0x0004 = Remove unmapped reads
-  -b = Output in the BAM format
+    -q 20 = Minimum quality score
+    F 0x0004 = Remove unmapped reads
+    -b = Output in the BAM format
   
 - The script for removing low quality reads is titled "RM_LOWQUALITY_SM.sh"
+
+STEP 10: InDel Realignment (GATK)
+
+- Overview of GATK - The local realignment prices is designed to consume one of more BAM files and to locally realign reads such that the number of mismatching bases is minimized across all the reds
+- In general, a large percent of regions requiring local realignment are due to the presence of an insertion or deletion (indwells) in the individual’s genome with respect to the reference genome.  Such alignment artifacts result in many bases mismatching the reference near the misalignment, which are easily mistaken as SNPs
+- Moreover, since read mapping algorithms operate on each read independently, it is impossible to place reads on the reference genome such at mismatches are minimized across all reads
+- Consequently, even when some reads are correctly mapped with respect the true index, also requiring realignment
+- Local realignment serves to transform regions with misalignments due to indwells into clean reads containing a consensus index suitable for standard variant discovery approaches
+- There are 2 steps to the realignment process:
+
+    1. Determining (small) suspicious intervals which are likely in need of realignment 
+	2. Running the realigned over those intervals (IndelRealigner)
+
+- Input = One or more aligned BAM files and optionally one or more lists of known indels
+- Output = A realigned version of your input
+- Usage example:
+
+    java -jar GenomeAnalysisTK.jar \
+	-T IndelRealigner \
+	-R reference.fasta \
+	-I input.bam \
+	-known indels.vcf \
+	-targetIntervals intervallistFromRTC.intervals \
+	-o realignedBam.bam
+    
+(a) First unzip reference genome
+
+    cp dmel-all-chromosome-r5.57.fasta.gz dmil-all-chromosome-r5.57_2.fasta.gz
+
+- Unzip the second copy using the command
+
+gunzip dmel-all-chromosome-r5.57_2.fasta.gz
+
+(b) Make a GATK directory
+
+- Make a GATK directory using the command (in sequence_analysis_sarah)
+
+    mkdir gatk_dir_SM
+    
+(c) Ensure index has a .dict
+
+- Make sure the index has a .dict
+- This creates a dictionary file for the reference genome with a header but no sam records (the header is the only sequence records)
+- Wrote a script for this called MAKE_DICT_SM.sh
