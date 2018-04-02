@@ -44,6 +44,7 @@ CALCULATING TAJIMA'S PI (POPOOLATION1)
 
 (c) Run script to calculate Tajima's pi
 
+- Tajima's pi represents the sum of the pairwise differences divided by the number of the pairs, essentially this is an 'average' calculation, representing the average nucleotide diversity
 - Flags - Paul went through the different flags with me and we discussed what it would mean to change certain options, but at this point the only flag that will be different is the pool size, Sarah’s pool sequencing was done with 100 individuals, which means 200 chromosomes
 
 	input = Input pileup file
@@ -112,6 +113,7 @@ So for example, for my .pi data, my working directory is cristin/Desktop/tajimas
 	
 CALCULATING WATTERSON'S THETA (POPOOLATION1)
 
+- Watterson's theta estimate of variation is derived from the number of segregating sites.  
 - Since I already created output directories for Tajima's pi, Watterson's theta and Tajima's D, I can just jump right into calculating theta with its own script
 
 (a) Run script to calculate Watterson's theta
