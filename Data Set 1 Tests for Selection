@@ -143,3 +143,26 @@ SUBSAMPLING (POPOOLATION2)
 	800 for maximum coverage?  Actually using the help function Paul and I learned that you 	can differentiate the maximum coverages for the different populations 
 	
 - The script for subsampling is titled "SUBSAMPLE_SM.sh"
+
+FST (POPOOLATION2)
+
+- What can be done with PoPoolation2?
+	
+	Measure differentiation between natural populations (identify differentiated genomic 	regions)
+	Pool-GWAS; phenotypically extreme individuals (black vs white) abdomen) are separated 	into groups which are sequenced as pools.  Allele frequency differences between these two groups may allow to identify the causative alleles
+	Evolve and resequencing studies; populations are allowed to adapt to novel environmental 	conditions. Loci responsible for adaptation can be identified by comparing the allele frequencies in the populations before and after adaptation
+	
+- Order of Sarah’s bam files so that we know which pairwise comparison is which (the program will compare 1/2, 1/3 etc so for example that might be ANCESTOR vs LAADR1G10, and ANCESTOR vs LAADR1G24 etc.
+- I will be interested to see if the same candidates appear across replicates and then look to see how they compare to Paul’s data
+
+	1.  ANCESTOR_ALL_aligned_merged.sorted.final_indel.bam
+	2.  LAAD_R1_G10_GAGATTCC-TAATCTTA_aligned_merged.sorted.final_indel.bam
+	3.  LAAD_R1_GAGATTCC-AGGCGAAG_aligned_merged.sorted.final_indel.bam
+	4.  LAAD_R2_G10_GAGATTCC-GTACTGAC_aligned_merged.sorted.final_indel.bam
+	5.  LAAD_R2_GAGATTCC-CAGGACGT_aligned_merged.sorted.final_indel.bam
+	6.  LAAD_R3_ATTCAGAA-TATAGCCT_aligned_merged.sorted.final_indel.bam
+	7.  LAAD_R3_G10_ATTCAGAA-ATAGAGGC_aligned_merged.sorted.final_indel.bam
+
+- Initially I experienced a lot of difficulty trying to run my Fst script, this is when Dr. Dworkin helped me realize that I was using the wrong input...it was supposed to be the Tajima's D script that used the subsampled input, NOT Fst, so I made the fix for the Fst script, and the correct script is provided here, but I did not have time at th end of the term to go back and use the subsampled input for Tajima's D
+- Since I ran the ancestor at a higher coverage, I will make a note in the discussion of my final report about my mistake
+- The Fst script (with the correct input) is listed under 'FST_SM.sh"
