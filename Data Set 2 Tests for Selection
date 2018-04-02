@@ -88,3 +88,28 @@ CREATE SYNC FILE
 SUBSAMPLING (POPOOLATION2)
 
 - Yes...I made this same mistake twice...but since I did, I'll still include the subsampling script for Paul's data because the script itself is correct, it just should have been done for Tajima's D...the script is called "SUBSAMPLE_PK.sh"
+
+CALCULATE FST (POPOOLATION2)
+
+- Order of Paul’s bam files so that we know which pairwise comparison is which (the program will compare 1/2, 1/3 etc so for example that might be MDG3 vs F33ConR1, and MDG3 vs F77ConR1 etc:
+
+	1.  F115ConR1_TAGCTT_merged_aligned_pe.final_realigned.bam
+	2.  F115ConR2_GGCTAC_merged_aligned_pe.final_realigned.bam
+	3.  F38ConR1_ATCACG_merged_aligned_pe.final_realigned.bam
+	4.  F38ConR2_TTAGGC_merged_aligned_pe.final_realigned.bam
+	5.  F77ConR1_ATGTCA_merged_aligned_pe.final_realigned.bam
+	6.  F77ConR2_ATTCCT_merged_aligned_pe.final_realigned.bam
+	7.  MGD3_SO_CAGATC_merged_aligned_pe.final_realigned.bam
+	
+(a) Run script to calculate Fst
+
+- In the file "FST_PK.sh"
+
+(b) . Transfer .fst file to local machine
+
+	scp cristina@info.mcmaster.ca:/4/cristina/sequence_analysis_paul/popool2_PK/*.fst .
+	
+VISUALIZING FST (R-STUDIO)
+
+- Same two scripts to separate the files and generate plots as Sarah's date, but with the necesarry changes to the working directory etc ("R script: 
+
