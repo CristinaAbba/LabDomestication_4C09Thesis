@@ -22,3 +22,9 @@ CALCULATING TAJIMA'S PI
 
 - The script for this step is called "PILEUP_PK.sh"
 - The names for the scripts from each data set are the same, with the exception of the initials to represent which data set it is being applied to; SM for Sarah's in Data Set 1 and PK for Paul's in Data Set 2
+
+(c) Run script to calculate Tajima's pi
+
+- The script to calculate Tajima's pi for this data set is "TAJIMAS_PI_PK.sh
+- Note for Paul's data the pool size is changed to 120 because he had 60 individuals sequenced in a pool
+
