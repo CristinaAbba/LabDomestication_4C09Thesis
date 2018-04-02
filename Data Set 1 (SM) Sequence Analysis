@@ -1,0 +1,100 @@
+Step 1: Download the files for the raw data and check md5sum or word count
+
+- A note on naming conventions for Sarah's files:
+  
+  LAAD = Description of the population (LAAD for Lab adapted and domesticated and ANCESTOR for ancestral population
+  R1 = Biological replicates from the same pool
+  GAGATTCC-AGGCGAAG = Tag/label
+  L001 = The lane it was run in
+  R1 = For either read 1 or read 2 (forwards and reverse)
+  gz = Simply indicates a compressed file
+  
+- md5sum is a good way to ensure that the matches sets (R1 and R1) are correct
+- I don't have the unique 'codes' for the reads, so if I want to check this after I will ask Dr. Dworkin for help
+
+Step 2: Quality control (QC) of sequences
+
+- To run quality checks, everything I will likely ever need can be found in the following directory on Dr. Golding's server
+  
+  /usr/local/
+  
+- For resources try the command "ls" to see what is available
+- When calling a program you always have to tell terminal first where it can be found
+- Do not be afraid to use "man" to learn about something (manual), for example
+  
+    man /usr/local/fastqc/fastqc
+    
+- Be sure to identify an output for quality check, this is why the directory "fastqc_checks_SM" was created
+- Test run on a single file:
+  
+    /usr/local/fastqc/fastqc --outdir=/4/cristina/sequence_analysis_sarah/fastqc_checks_SM/LAAD_R3_G10_ATTCAGAA-    ATAGAGGC_L008_R2_001.fastq.gz
+    
+- Now when I go into my fastqc_checks_SM directory there are two files; a .zip file and an .html file
+- To run all of the checks at once on a screen being by entering the command"screen" into the terminal window
+- Remember to be in the same place to reattach ("screen -r") to the screen
+- For example, if I opened a screen in info113, that is where I must go to return to it (it is like a virtual terminal screen, it works the same way and you can log off and close the computer and leave a script to run for when you return)
+- Now this screen can be used like a regular terminal window, but I can exit from terminal at any time and the things hat are running will continue to run
+  
+    /usr/local/fastqc/fastqc --outdir=/4/cristina/sequence_analysis_sarah/fastqc_checks_SM/ *fastq.gz
+    
+- This will run for all the files that end in "fastq.gz"
+- Some common commands for screen:
+  
+    screen -S <name> = Start a new screen session with name
+    screen -ls = List running screen sessions
+    screen -x = Attach to a running screen
+    screen -r <name> = Attach to session "name"
+    CONTROL -a -d = To detach
+    CONTROL -a -k = To kill screen
+    
+- Moving files to your local machine - It is easier to go from a current location on my laptopn and "reach in a grab" the files from the server, than the other way around
+- I created a directory on my desktop for the initial quality check outputs ("fastqc_output_SM")
+  
+    /Desktop/fastqc_output_SM/
+    
+    scp cristina@info.mcmaster.ca:/4/cristina/sequence_analysis_sarah/fastqc_checks_SM/*.zip
+    
+- This tells terminal to SECURE COPY all the files ending in .zip from the disclosed location to HERE, where I am right now - that is what is meant by the period (note this requires password)
+
+Step 3: Trimming
+
+- Introduction to Trimmomatic - Trimmomatic is a fast, multithreaded command line tool that can be used to trim and crop Illumina (fast, multi threaded command line tool that can be used to trim and crop Illumina (FASTQ) data as well as to remove adapters.  These adapters can pose a real problem depending on the library preparation and downstream application
+- There are 2 major models:
+
+  1. Paired end mode
+  2. Single end mode
+  
+- The paired end mode will maintain correspondence of read pairs and also use the additional information contained in paired reads to Bettie find adapter or PCR primer fragments introduced by the library preparation process
+- Trimmomatic works with FASTQ files (using phred +33 or shred +64 quality scores, depending on the Illumina pipeline).  Files compressed using either ‘gzip’ or ‘bzip’ are supported and are identified by use of ‘.gz’ or .bz2' 
+- Trimmomatic performs a variety of useful trimming tasks for illuminating paired end and single end data.  The selection of trimming steps and their associated parameters are supplied on the command line
+
+  ILLUMINACLIP = Cut adapter and other Illumina-specific sequences from the read
+  SLIDING WINDOW = Performs a sliding window trimming approach.  Starts scanning at the 5’ end and clips the read once the   avg. quality within the window falls below a threshold
+  MAX INFO = An adaptive quality trimmer which balances read length and error rate to maximize the value of each read
+  LEADING = Cut bases off at the start of the read, if below a threshold quality
+  TRAILING = Cut bases off at the end of the read, if below a threshold quality
+  CROP = Cut the read to a specified number of bases from the end
+  HEADCROP = Cut the specified number of bases from the start of the read
+  MINLEN = Drop the read if it is below a specified length
+  AVGQUAL = Drop th read if it is below a specified quality
+  TOPHRED33 = Convert quality score to Phred 33
+  TOPHRED64 = Convert quality screen to Phred 64
+  
+- For paired end mode, two input files and 4 output files are specified, 2 for the ‘paired’ output where both reads survived the processing and 2 for corresponding ‘unpaired’ output where a read survived but the read did not (For output 1P, 1U, 2P, 2U)
+- Example:
+
+  ava -jar trimmomatic-0.36.jar PE s_1_1_sequence.txt.gz s_1_2_sequence.txt.gz lane1_forward_paired.fq.gz lane1_forward_unpaired.fq.gz lane1_reverse_paired.fq.gz lane1_reverse_unpaired.fq.gz ILLUMINACLIP: TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4 MINLEN:36
+  
+- Trim test from the command line:
+
+  java -jar /usr/local/trimmomatic/trimmomatic-0.36.jar PE LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R1_001.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R2_001.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R1_001_paired_test.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R1_001_unpaired_test.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R2_001_paired_test.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R2_001._unpaired_test.fastq.gz ILLUMINACLIP:/usr/local/trimmomatic/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 MAXINFO:40:0.5 MINLEN:36 
+       
+TrimmomaticPE: Started with arguments:                         LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R1_001.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R2_001.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R1_001_paired_test.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R1_001_unpaired_test.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R2_001_paired_test.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R2_001._unpaired_test.fastq.gz ILLUMINACLIP:/usr/local/trimmomatic/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 MAXINFO:40:0.5 MINLEN:36
+
+Using PrefixPair: 'TACACTCTTTCCCTACACGACGCTCTTCCGATCT' and 'GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT'
+ILLUMINACLIP: Using 1 prefix pairs, 0 forward/reverse sequences, 0 forward only sequences, 0 reverse only sequences
+Quality encoding detected as phred33
+
+- The output when I ran this went to my raw data directory, so I just moved it to the trimmed_data_SM directory for now
+- These reads will get trimmed again anyway when the script is written
+- The script for trimming the data is "TRIM_SM.sh"
