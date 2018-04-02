@@ -1,6 +1,11 @@
 Data Set 2 was borrowed from Paul Knoops' Predation reseach (original sequenced data from Michael DeNieu at Michigan State University)
 
 - For Paul's sequence data, I am starting with the final .bam files (pipeline completed all the way up to GATK realiner), so all I have to do is create the necessary directories and .pileup files for his data, and then can jump right into the analysis
+- The analysis for each data set is the same 
+
+    Measures of Variation = Tajima's pi and Watterson's theta
+    Tests for Selection = Tajima's D and Fst
+
 - A note on naming conventions for Paul's data:
 
     F38 = Description of the generation (generational time points include 38, 77 and 115)
@@ -28,3 +33,67 @@ CALCULATING TAJIMA'S PI
 - The script to calculate Tajima's pi for this data set is "TAJIMAS_PI_PK.sh
 - Note for Paul's data the pool size is changed to 120 because he had 60 individuals sequenced in a pool
 
+(d) Transfer .pi files to your local machine
+
+    scp cristina@info.mcmaster.ca:/4/cristina/sequence_analysis_paul/tajimas_pi_PK/*.pi .
+    
+VISUALIZING TAJIMA'S PI
+
+- Using the R script "R script: Tajima's pi plots"
+- However this time the working directory is where Paul's .pi files are kept
+- Some stats that were obtained using R:
+
+    min(Datt_MGD3$Pi)
+    [1] 0.000124076 (on the X chromosome)
+    max(Datt_MGD3$Pi)
+    [1] 0.01798604 (on chromosome 3R)
+    mean(Datt_MGD3$Pi)
+    [1] 0.005357312
+
+    min(Datt_F38ConR1$Pi)
+    [1] 4.5841e-05 (on chromosome 3L)
+    max(Datt_F38ConR1$Pi)
+    [1] 0.01724852 (on chromosome 2R)
+    mean(Datt_F38ConR1$Pi)
+    [1] 0.00437305
+
+    min(Datt_F77ConR1$Pi)
+    [1] 2.9938e-05 (on the X chromosome)
+    max(Datt_F77ConR1$Pi)
+    [1] 0.01668414 (on the X chromosome)
+    mean(Datt_F77ConR1$Pi)
+    [1] 0.003791757
+
+    min(Datt_F115ConR1$Pi)
+    [1] 0 (on chromosome X, 2L, 2R, 3R)
+    max(Datt_F115ConR1$Pi)
+    [1] 0.01540273 (on the X chromosome)
+    mean(Datt_F115ConR1$Pi)
+    [1] 0.003465177
+
+    min(Datt_F38ConR2$Pi)
+    [1] 5.825e-05 (on the X chromosome)
+    max(Datt_F38ConR2$Pi)
+    [1] 0.016692 (on chromosome 3L)
+    mean(Datt_F38ConR2$Pi)
+    [1] 0.004574914
+
+    min(Datt_F77ConR2$Pi)
+    [1] 3.8581e-05 (on chromosome 4)
+    max(Datt_F77ConR2$Pi)
+    [1] 0.01432036 (on chromosome 3L)
+    mean(Datt_F77ConR2$Pi)
+    [1] 0.004102807
+
+    min(Datt_F115ConR2$Pi)
+    [1] 7.284e-06 (on chromosome 3R)
+    max(Datt_F115ConR2$Pi)
+    [1] 0.01443819 (on chromosome 3R)
+    mean(Datt_F115ConR2$Pi)
+    [1] 0.003729588
+
+CALCULATING WATTERSON'S THETA (POPOOLATION1)
+
+(a) Run script to calculate Watterson's theta
+
+- Located within the file "W_THETA_PK.sh"
