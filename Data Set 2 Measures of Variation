@@ -12,3 +12,13 @@ Data Set 2 was borrowed from Paul Knoops' Predation reseach (original sequenced 
 CALCULATING TAJIMA'S PI
 
 (a) Create necessary directories
+
+    mkdir pileup_files_PK
+    mkdir tajimas_pi_PK
+    mkdir wattersons_theta_PK
+    mkdir tajimas_d_PK
+    
+(b) Create .pileup for every .bam file
+
+- The script for this step is called "PILEUP_PK.sh"
+- The names for the scripts from each data set are the same, with the exception of the initials to represent which data set it is being applied to; SM for Sarah's in Data Set 1 and PK for Paul's in Data Set 2
