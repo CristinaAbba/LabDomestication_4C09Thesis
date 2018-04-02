@@ -180,3 +180,16 @@ STEP 8: Remove Duplicates (Picard)
 	M = Creates an output file of statistics of duplicates found (but is rewritten e	very loop in the script)
 	VALIDATION_STRINGENCY=SILENT
 	REMOVE_DUPLICATES=true = Gets rid of any found duplicated regions
+
+STEP 9: Remove low quality reads (samtools)
+
+- Created another directory called final_bam_SM
+- Sarah calls this step “Quality Control Again” because PoPoolation2 has this step where they want to check if everything is “fine and dandy”, which perhaps is redundant, but I am still a baby and am learning everything 
+- One thing that I DO understand is to call the outputs final.bam since this is the final bam step before creating mpileup files, so I will keep the same naming conventions
+- The flags used are:
+
+  -q 20 = Minimum quality score
+  F 0x0004 = Remove unmapped reads
+  -b = Output in the BAM format
+  
+- The script for removing low quality reads is titled "RM_LOWQUALITY_SM.sh"
