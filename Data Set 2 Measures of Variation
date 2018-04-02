@@ -97,3 +97,58 @@ CALCULATING WATTERSON'S THETA (POPOOLATION1)
 (a) Run script to calculate Watterson's theta
 
 - Located within the file "W_THETA_PK.sh"
+
+VISUALZING WATTERSON'S THETA (R-STUDIO)
+
+- Using the R script "R script: Watterson's theta plots"
+- However this time the working directory is where Paul's .theta files are kept
+- Some stats that were obtained using R:
+
+    min(Datt_MGD3$Theta)
+    [1] 0.000264737 (on the X chromosome)
+    max(Datt_MGD3$Theta)
+    [1] 0.01486863 (on chromosome 2R)
+    mean(Datt_MGD3$Theta)
+    [1] 0.00512798
+
+    min(Datt_F38ConR1$Theta)
+    [1] 2.5115e-05 (on chromosome 3L)
+    max(Datt_F38ConR1$Theta)
+    [1] 0.01446306 (on chromosome 2R)
+    mean(Datt_F38ConR1$Theta)
+    [1] 0.003812307
+
+    min(Datt_F77ConR1$Theta)
+    [1] 4.8176e-05 (on chromosome 3L)
+    max(Datt_F77ConR1$Theta)
+    [1] 0.01966439 (on the X chromosome)
+    mean(Datt_F77ConR1$Theta)
+    [1] 0.003038093
+
+    min(Datt_F115ConR1$Theta)
+    [1] 0 (on chromosome X, 2L, 2R and 3R)
+    max(Datt_F115ConR1$Theta)
+    [1] 0.0179498 (on chromosome 2L)
+    mean(Datt_F115ConR1$Theta)
+    [1] 0.002877666
+
+    min(Datt_F38ConR2$Theta)
+    [1] 8.2261e-05 (on the X chromosome)
+    max(Datt_F38ConR2$Theta)
+    [1] 0.01541585 (on chromosome 2L)
+    mean(Datt_F38ConR2$Theta)
+    [1] 0.003958284
+
+    min(Datt_F77ConR2$Theta)
+    [1] 7.2454e-05 (on chromosome 4)
+    max(Datt_F77ConR2$Theta)
+    [1] 0.013875 (on the X chromosome)
+    mean(Datt_F77ConR2$Theta)
+    [1] 0.003198589
+
+    min(Datt_F115ConR2$Theta)
+    [1] 2.8044e-05 (on chromosome 3R)
+    max(Datt_F115ConR2$Theta)
+    [1] 0.01524125 (on chromosome 2L)
+    mean(Datt_F115ConR2$Theta)
+    [1] 0.003047895
