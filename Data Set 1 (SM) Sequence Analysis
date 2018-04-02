@@ -148,3 +148,18 @@ STEP 6: Merge files (samtools)
   3.  Merge all ancestor files using the script "MERGE_ANCESTOR.sh"
   
 - After going through Sarah’s pipeline I realized that I probably needed to put this in the same directory as the other merged files, so I moved the merged output to merged_data_SM, and then moved the merged ancestors from the previous step (involving the lanes) into the directory merged_ancestor_SM incase I still need them
+
+STEP 7: Sorting (Picard)
+
+- The next step is to mark and remove duplicates, but in order to get there we have to sort with Picard
+- Picard does not accept samtools sorting so we have to sort with Picard to use the data for other steps such as marking and removing duplicates
+- Picard is a set of tools for processing and analyzing next generation sequencing data
+- As per Sarah’s pipeline we will also be using SortSam from Picard Tools to sort the data and prepare for marking
+- Important flags:
+
+  Xmx2g = Which allocated Java 2 Gb of memory
+  S0 = Which is the sort order (in this case based on coordinate)
+  VALIDATION_STRINGENCY = Silenced to stop Picard from reporting every issue that would ultimately be displayed that would not help us at all when it comes to the final results for the analysis
+  
+- Also had to make a new directory for sorted output
+- The script for sorting using picard is called "SORTSAM_PICARD_SM.sh"
