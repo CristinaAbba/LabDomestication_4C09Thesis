@@ -275,7 +275,7 @@ STEP 10: InDel Realignment (GATK)
 
 - And the second "GATK_INDEL_SM.sh"
 
-STEP 11: Create mpileup file
+STEP 11: Create mpileup file (PoPoolation2)
 
 - A mpileup (multiple pileup) file format has information from each sample, including chromosome name and position, coverage, reference base, base mapping/quality numbers.  - The “read base column” holds information on if the region is a match, mismatch, indeed or low quality to signify variance to the reference base.
 - This can allow for variant calling and locating variants for evolved populations.
@@ -287,3 +287,13 @@ STEP 11: Create mpileup file
 	f: Path to reference sequence
 	
 - Creating the mpileup is in the script "MPILEUP_SM.sh"
+
+STEP 12: Create sync file (PoPoolation2)
+
+- The final step in the pipeline
+- Flags:
+
+	ea = Enable assertions (this is done simply as per the PoPoolation tutorial...and who am I to do otherwise)
+	Xmx12 = Which allocates Java 12 Gb of memory (Sarah used 32, but I am going to try using less memory since I only have a 	 small portion of her data)
+	
+- The script itself is titled "SYNC_SM.sh"
