@@ -1,0 +1,22 @@
+CALCULATING TAJIMA'S PI (POPOOLATION1)
+
+- Thus far I have been using mostly Sarah’s scripts as a guide because I have been working with her data, but for calculating Tajima’s pi I’ve looked to Paul’s scripts for guidelines because for his project he completed the analysis, so these are his steps:
+
+(a) Create necessary directories
+
+	mkdir pileup_files_SM
+	mkdir tajimas_pi_SM
+	mkdir wattersons_theta_SM
+	mkdir tajimas_d_SM
+	
+(b) Create .pileup files for every .bam file	
+
+- Each generated .bam file needs to be in .pileup format for the use in Popoolation1
+- Flags:
+
+	B = Disable BAQ (base alignment quality)
+	Q = Minimum base quality (already filtered for 20, default is 13, but since this step 	has already been completed in 	  	  the past Paul just set this to 0 because we don’t need to 	worry about it 
+	f = Path to reference sequence
+	
+- The script for this step is called "PILEUP_SM.sh"
+
