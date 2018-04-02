@@ -117,4 +117,6 @@ CALCULATING WATTERSON'S THETA (POPOOLATION1)
 (a) Run script to calculate Watterson's theta
 
 - Can be found under the file "W_THETA_SM.sh"
+- The same realization applies to the theta values as the Tajima's pi, this script also had a maximum coverage of 400
+- So made another script to calculate Watterson's theta for the ancestor where the maximum coverage was changed to 800, it is titled "W_THETA_ANCESTOR_SM.sh"
 
