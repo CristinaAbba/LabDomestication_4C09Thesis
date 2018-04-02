@@ -1,0 +1,68 @@
+#Create a Plot of a single .csv file (created from https://github.com/PaulKnoops/episodicSequenceData/blob/master/Analysis_after_sync_2018_scripts/novo_Fst_Split_Comparisons.R)
+
+# Plotting: One .csv file
+
+require(data.table)
+require(tidyr)
+require(dplyr)
+require(ggplot2)
+
+#Make sure to change your ddat variable if you are making individual graphs
+
+ddat2 <- fread('fst_SM1:2.csv')
+
+ddat3 <- fread('fst_SM1:4.csv')
+ddat4 <- fread('fst_SM1:7.csv')
+
+ddat5 <- rbind(ddat2,ddat3,ddat4)
+
+ddat5$Fst <- as.numeric(ddat5$Fst)
+
+ddat6 <- ddat5 %>%
+  group_by(chr, window) %>%
+  summarise(meanFst = (mean(Fst)))
+
+xc_mean <- mean(ddat6$meanFst)
+xs_median <- median(ddat6$meanFst)
+
+ddat6 <- filter(ddat6, chr %in% c('X','2L','2R','3L','3R','4'))
+
+g <- nrow(ddat6[which(ddat6$chr=='2L'),])
+h <- nrow(ddat6[which(ddat6$chr=='2R'),])
+i <- nrow(ddat6[which(ddat6$chr=='3L'),])
+j <- nrow(ddat6[which(ddat6$chr=='3R'),])
+k <- nrow(ddat6[which(ddat6$chr=='4'),])
+l <- nrow(ddat6[which(ddat6$chr=='X'),])
+
+tttle <- 'Mean Fst ANCESTOR:R1,R2,R3 LAAD G10'
+
+ddat2_X <- ddat6[which(ddat6$chr=='X'),]
+ddat2_X$numb <- 1:l
+ddat2_2L <- ddat6[which(ddat6$chr=='2L'),]
+ddat2_2L$numb <- (l+1):(l+g)
+ddat2_2R <- ddat6[which(ddat6$chr=='2R'),]
+ddat2_2R$numb <- (l+g+1):(l+g+h)
+ddat2_3L <- ddat6[which(ddat6$chr=='3L'),]
+ddat2_3L$numb <- (l+g+h+1):(l+g+h+i)
+ddat2_3R <- ddat6[which(ddat6$chr=='3R'),]
+ddat2_3R$numb <- (l+g+h+i+1):(l+g+h+i+j)
+ddat2_4 <- ddat6[which(ddat6$chr=='4'),]
+ddat2_4$numb <- (l+g+h+i+j+1):(l+g+h+i+j+k)
+
+ddat7 <- rbind(ddat2_X, ddat2_2L, ddat2_2R, ddat2_3L, ddat2_3R, ddat2_4)
+
+ggxcv <-  ggplot(data = ddat7, aes(x=numb, y=meanFst, color=chr))
+ggxcv2 <- ggxcv + 
+  geom_point(size=0.5, show.legend = F, alpha = 0.75) + 
+  theme(panel.background = element_blank()) +
+  scale_y_continuous(limits=c(0, 0.5), breaks=seq(0, 0.5, 0.1)) +
+  geom_hline(yintercept = xc_mean) + 
+  xlab("Chromosome") +
+  ggtitle(tttle) +
+  scale_x_discrete(limits=c(l/2, l+(g/2), (l+g+(h/2)), (l+g+h+(i/2)), (l+g+h+i+(j/2)), (l+g+h+i+j+(k/2))), labels = c("X","2L", "2R", '3L', '3R', "4")) +
+  scale_colour_manual(values=c("deeppink4","palevioletred3", 'midnightblue', 'paleturquoise3', 'springgreen4', 'darkgoldenrod2')) +
+  theme(text = element_text(size=15),
+        axis.text.x= element_text(size=15), 
+        axis.text.y= element_text(size=15))
+
+print(ggxcv2)
