@@ -127,4 +127,11 @@ bwa index dmel-all-chromosome-r5.57.fasta.gz
 
 - The scripts for mapping paired sequences and unpaired sequences are "MAP_SM.sh" and "MAP_unpaired_SM.sh" respectively
 
-  
+STEP 5: Convert SAM to BAM files (samtools)
+
+- Introduction to Samtools - Samtools is a set of utilities that manipulate alignments in the BAM format.
+- It imports from and exports to the SAM (Sequence Alignment/Map) format, does sorting, merging and indexing, and allows to retrieve reads in any regions swiflly
+- Samtools is designed to work on a stream.  It regards an input file ‘-‘ as the standard input (stdin) and an output file ‘-‘ as the standard output (stdout).
+- Several commands can thus be combined with Unix pipes.  Samtools always output warning and error messages to the standard error output (stderr)
+- Samtools is also able to open a BAM (not SAM) file on a remote FTP or HTTP server if the BAM file name starts with ‘ftp://' or ‘http://'.  Samtools checks the current working directory for the index file and will download the index upon absence.  Samtools does not retrieve the entire alignment file unless it is asked to do so.
+- The script for converting SAM to BAM files is called "SAM2BAM_SM.sh"
