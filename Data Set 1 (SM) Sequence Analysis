@@ -180,6 +180,8 @@ STEP 8: Remove Duplicates (Picard)
 	M = Creates an output file of statistics of duplicates found (but is rewritten e	very loop in the script)
 	VALIDATION_STRINGENCY=SILENT
 	REMOVE_DUPLICATES=true = Gets rid of any found duplicated regions
+  
+- The script for removing duplicates is called "RM_DUPLICATES_SM.sh"
 
 STEP 9: Remove low quality reads (samtools)
 
