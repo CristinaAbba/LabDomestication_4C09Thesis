@@ -135,3 +135,16 @@ STEP 5: Convert SAM to BAM files (samtools)
 - Several commands can thus be combined with Unix pipes.  Samtools always output warning and error messages to the standard error output (stderr)
 - Samtools is also able to open a BAM (not SAM) file on a remote FTP or HTTP server if the BAM file name starts with ‘ftp://' or ‘http://'.  Samtools checks the current working directory for the index file and will download the index upon absence.  Samtools does not retrieve the entire alignment file unless it is asked to do so.
 - The script for converting SAM to BAM files is called "SAM2BAM_SM.sh"
+
+STEP 6: Merge files (samtools)
+
+- For this step I created a directory called “merged_data_SM” to store the merged BAM files
+- Also will be using samtools again, which has an option to merge
+- I also learned that samtools has an option to sort as well, but we will be using Picard because it does not accept samtools sorting (more on this later)
+- Merging took place in three steps:
+
+  1.  Merge lanes 1 to 4 using the script "MERGE_L001TOL004_SM.sh
+  2.  Merge lanes 5 to 8 using the script "MERGE_L005TOL008_SM.sh
+  3.  Merge all ancestor files using the script "MERGE_ANCESTOR.sh"
+  
+- After going through Sarah’s pipeline I realized that I probably needed to put this in the same directory as the other merged files, so I moved the merged output to merged_data_SM, and then moved the merged ancestors from the previous step (involving the lanes) into the directory merged_ancestor_SM incase I still need them
