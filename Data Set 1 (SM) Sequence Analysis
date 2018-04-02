@@ -27,7 +27,7 @@ STEP 2: Quality control (QC) of sequences (fastqc)
 - Be sure to identify an output for quality check, this is why the directory "fastqc_checks_SM" was created
 - Test run on a single file:
   
-    /usr/local/fastqc/fastqc --outdir=/4/cristina/sequence_analysis_sarah/fastqc_checks_SM/LAAD_R3_G10_ATTCAGAA-            	ATAGAGGC_L008_R2_001.fastq.gz
+    /usr/local/fastqc/fastqc --outdir=/4/cristina/sequence_analysis_sarah/fastqc_checks_SM/LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R2_001.fastq.gz
     
 - Now when I go into my fastqc_checks_SM directory there are two files; a .zip file and an .html file
 - To run all of the checks at once on a screen being by entering the command"screen" into the terminal window
@@ -69,7 +69,7 @@ STEP 3: Trimming (Trimmomatic)
 - Trimmomatic performs a variety of useful trimming tasks for illuminating paired end and single end data.  The selection of trimming steps and their associated parameters are supplied on the command line
 
     ILLUMINACLIP = Cut adapter and other Illumina-specific sequences from the read
-    SLIDING WINDOW = Performs a sliding window trimming approach.  Starts scanning at the 5’ end and clips the read once the       avg. quality within the window falls below a threshold
+    SLIDING WINDOW = Performs a sliding window trimming approach.  Starts scanning at the 5’ end and clips the read once the avg. quality within the window falls below a threshold
     MAX INFO = An adaptive quality trimmer which balances read length and error rate to maximize the value of each read
     LEADING = Cut bases off at the start of the read, if below a threshold quality
     TRAILING = Cut bases off at the end of the read, if below a threshold quality
@@ -83,27 +83,16 @@ STEP 3: Trimming (Trimmomatic)
 - For paired end mode, two input files and 4 output files are specified, 2 for the ‘paired’ output where both reads survived the processing and 2 for corresponding ‘unpaired’ output where a read survived but the read did not (For output 1P, 1U, 2P, 2U)
 - Example:
 
-    java -jar trimmomatic-0.36.jar PE s_1_1_sequence.txt.gz s_1_2_sequence.txt.gz lane1_forward_paired.fq.gz             	 	 
-	lane1_forward_unpaired.fq.gz lane1_reverse_paired.fq.gz lane1_reverse_unpaired.fq.gz ILLUMINACLIP: TruSeq3-PE.fa:2:30:10   	
-	LEADING:3 TRAILING:3 SLIDINGWINDOW:4 MINLEN:36
+    java -jar trimmomatic-0.36.jar PE s_1_1_sequence.txt.gz s_1_2_sequence.txt.gz lane1_forward_paired.fq.gz       lane1_forward_unpaired.fq.gz lane1_reverse_paired.fq.gz lane1_reverse_unpaired.fq.gz ILLUMINACLIP: TruSeq3-PE.fa:2:30:10   LEADING:3 TRAILING:3 SLIDINGWINDOW:4 MINLEN:36
   
 - Trim test from the command line:
 
     java -jar /usr/local/trimmomatic/trimmomatic-0.36.jar PE LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R1_001.fastq.gz   		 	 	 
-	LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R2_001.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R1_001_paired_test.fastq.gz  		
-	LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R1_001_unpaired_test.fastq.gz LAAD_R3_G10_ATTCAGAA- 			 							
-	ATAGAGGC_L008_R2_001_paired_test.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R2_001._unpaired_test.fastq.gz 				
-	ILLUMINACLIP:/usr/local/trimmomatic/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 MAXINFO:40:0.5 MINLEN:36 
+	LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R2_001.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R1_001_paired_test.fastq.gz  LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R1_001_unpaired_test.fastq.gz LAAD_R3_G10_ATTCAGAA- ATAGAGGC_L008_R2_001_paired_test.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R2_001._unpaired_test.fastq.gz ILLUMINACLIP:/usr/local/trimmomatic/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 MAXINFO:40:0.5 MINLEN:36 
        
-	TrimmomaticPE: Started with arguments:LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R1_001.fastq.gz
-	LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R2_001.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R1_001_paired_test.fastq.gz 			
-	LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R1_001_unpaired_test.fastq.gz LAAD_R3_G10_ATTCAGAA-										
-	ATAGAGGC_L008_R2_001_paired_test.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R2_001._unpaired_test.fastq.gz 				
-	ILLUMINACLIP:/usr/local/trimmomatic/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 MAXINFO:40:0.5 MINLEN:36
+	TrimmomaticPE: Started with arguments:LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R1_001.fastq.gz  LAAD_R3_G10_ATTCAGA-ATAGAGGC_L008_R2_001.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R1_001_paired_test.fastq.gz  LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R1_001_unpaired_test.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R2_001_paired_test.fastq.gz LAAD_R3_G10_ATTCAGAA-ATAGAGGC_L008_R2_001._unpaired_test.fastq.gz ILLUMINACLIP:/usr/local/trimmomatic/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 MAXINFO:40:0.5 MINLEN:36
 
-	Using PrefixPair: 'TACACTCTTTCCCTACACGACGCTCTTCCGATCT' and 'GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT'
-	ILLUMINACLIP: Using 1 prefix pairs, 0 forward/reverse sequences, 0 forward only sequences, 0 reverse only sequences
-	Quality encoding detected as phred33
+	Using PrefixPair: 'TACACTCTTTCCCTACACGACGCTCTTCCGATCT' and 'GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT' ILLUMINACLIP: Using 1 prefix pairs, 0 forward/reverse sequences, 0 forward only sequences, 0 reverse only sequences Quality encoding detected as phred33
 
 - The output when I ran this went to my raw data directory, so I just moved it to the trimmed_data_SM directory for now
 - These reads will get trimmed again anyway when the script is written
@@ -132,8 +121,7 @@ STEP 4: Mapping (BWA)
 - Before writing the mapping script I need to download the reference genome - Can do this from flybase.net.  Find a fasta.gz that can be used as a reference
 - Will also have to index it afterwards with "bwa index"
 
-    curl -O ftp://ftp.flybase.net/genomes/Drosophila_melanogaster/dmel_r5.57_FB2014_03/fasta/dmel-all-chromosome-  			 	 
-	r5.57.fasta.gz
+    curl -O ftp://ftp.flybase.net/genomes/Drosophila_melanogaster/dmel_r5.57_FB2014_03/fasta/dmel-all-chromosome-  r5.57.fasta.gz
     bwa index dmel-all-chromosome-r5.57.fasta.gz
 
 - The scripts for mapping paired sequences and unpaired sequences are "MAP_SM.sh" and "MAP_unpaired_SM.sh" respectively
@@ -181,7 +169,7 @@ STEP 8: Remove Duplicates (Picard)
 - This step removes the duplicates from our sequence data
 - Duplicates can come from two sources;
 
-	1. During sequencing isolated clusters are identified as two when they are a single 	cluster (OPTICAL DUPLICATES)
+	1. During sequencing isolated clusters are identified as two when they are a single cluster (OPTICAL DUPLICATES)
 	2. Duplicates may occur during the PCR stage
   
 - Duplicates are removed with Picard Tools, using the files generated by sorting with PICARD
@@ -189,7 +177,7 @@ STEP 8: Remove Duplicates (Picard)
 - So that makes the flags:
 
 	Xmx12g = Which allocates Java 12 Gb of memory
-	M = Creates an output file of statistics of duplicates found (but is rewritten e	very loop in the script)
+	M = Creates an output file of statistics of duplicates found (but is rewritten every loop in the script)
 	VALIDATION_STRINGENCY=SILENT
 	REMOVE_DUPLICATES=true = Gets rid of any found duplicated regions
   
@@ -257,7 +245,7 @@ STEP 10: InDel Realignment (GATK)
 - Need read groups for GATK to run
 - As far as Sarah can tell, the read groups can be anything, they just need to be there, can always edit them later
 
-	RGID = Read Group Identifier; for Illumina, are composed using the flowcell + lane name and number [using Lanes L001_L008 	  for now]
+	RGID = Read Group Identifier; for Illumina, are composed using the flowcell + lane name and number [using Lanes L001_L008 for now]
 	RGLB = DNA Preperation Library Identifier [library1 as place holder]
 	RGPL = platform/technology used to produce the read [Illumina]
 	RGPU = Platform Unit; details on the sequencing unit (i.e run barcode) [None, used for practice]
@@ -293,8 +281,8 @@ STEP 11: Create mpileup file (PoPoolation2)
 - Sarah created a unique name for her project so that the file could be easily located; if I understand what she did correctly I will make a unique name as well: lab_adaptation_SM
 - Flags:
 
-	B: Disable BAQ (base alignment quality) computation (which stops probabilistic 	realignment for potential misaligned SNPs, 	   but some also SNPs should not affect the 	results for the evolved pooled populations)
-	Q 0: Quality score at 0 because we’ve done so many quality checks before (did 	quality of 20 in previous scripts)
+	B: Disable BAQ (base alignment quality) computation (which stops probabilistic realignment for potential misaligned SNPs, but some also SNPs should not affect the 	results for the evolved pooled populations)
+	Q 0: Quality score at 0 because we’ve done so many quality checks before (did quality of 20 in previous scripts)
 	f: Path to reference sequence
 	
 - Creating the mpileup is in the script "MPILEUP_SM.sh"
@@ -305,6 +293,6 @@ STEP 12: Create sync file (PoPoolation2)
 - Flags:
 
 	ea = Enable assertions (this is done simply as per the PoPoolation tutorial...and who am I to do otherwise)
-	Xmx12 = Which allocates Java 12 Gb of memory (Sarah used 32, but I am going to try using less memory since I only have a 	 small portion of her data)
+	Xmx12 = Which allocates Java 12 Gb of memory (Sarah used 32, but I am going to try using less memory since I only have a small portion of her data)
 	
 - The script itself is titled "SYNC_SM.sh"
