@@ -120,3 +120,12 @@ CALCULATING WATTERSON'S THETA (POPOOLATION1)
 - The same realization applies to the theta values as the Tajima's pi, this script also had a maximum coverage of 400
 - So made another script to calculate Watterson's theta for the ancestor where the maximum coverage was changed to 800, it is titled "W_THETA_ANCESTOR_SM.sh"
 
+(b) Move .theta files to local machine
+
+	scp cristina@info.mcmaster.ca:/4/cristina/sequence_analysis_sarah/wattersons_theta_SM/*.theta .
+	
+VISUALIZING WATTERSON'S THETA (R-STUDIO)
+
+- Successfully was able to use the same scripts as before, but adjusted the working directory and input
+- The full R script can be found under "R-Script: Watterson's theta plots"
+
